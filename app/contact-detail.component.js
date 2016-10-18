@@ -23,7 +23,7 @@ var ContactDetailComponent = (function () {
         this.route.params.forEach(function (params) {
             var id = +params['id'];
             _this.contactService.getContactDetails(id)
-                .then(function (contact) { return _this.contact = contact; });
+                .subscribe(function (contact) { return _this.contact = contact; });
         });
     };
     ContactDetailComponent.prototype.back = function () {
@@ -32,12 +32,12 @@ var ContactDetailComponent = (function () {
     ContactDetailComponent.prototype.update = function (contact) {
         var _this = this;
         this.contactService.update(contact)
-            .then(function () { return _this.back(); });
+            .subscribe(function () { return _this.back(); });
     };
     ContactDetailComponent.prototype.delete = function (contact) {
         var _this = this;
         this.contactService.deleteContact(contact)
-            .then(function () { return _this.back(); });
+            .subscribe(function () { return _this.back(); });
     };
     ContactDetailComponent = __decorate([
         core_1.Component({

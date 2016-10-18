@@ -19,13 +19,12 @@ var ContactService = (function () {
     }
     ContactService.prototype.getContacts = function () {
         return this.http.get(this.contactsUrl)
-            .toPromise()
-            .then(this.getData)
+            .map(this.getData)
             .catch(this.handleError);
     };
     ContactService.prototype.getContactDetails = function (id) {
         return this.getContacts()
-            .then(function (contacts) { return contacts.find(function (contact) { return contact.id === id; }); });
+            .map(function (contacts) { return contacts.find(function (contact) { return contact.id === id; }); });
     };
     ContactService.prototype.getData = function (res) {
         var body = res.json();
@@ -37,23 +36,20 @@ var ContactService = (function () {
     ContactService.prototype.addContact = function (contact) {
         var body = JSON.stringify(contact);
         return this.http.post(this.contactsUrl, body, this.options)
-            .toPromise()
-            .then(this.getData)
+            .map(this.getData)
             .catch(this.handleError);
     };
     ContactService.prototype.update = function (contact) {
         var body = JSON.stringify(contact);
         var url = this.contactsUrl + "/" + contact.id;
         return this.http.put(url, body, this.options)
-            .toPromise()
-            .then(function () { return contact; })
+            .map(function () { return contact; })
             .catch(this.handleError);
     };
     ContactService.prototype.deleteContact = function (contact) {
         var url = this.contactsUrl + "/" + contact.id;
         return this.http.delete(url)
-            .toPromise()
-            .then(function () { return null; })
+            .map(function () { return null; })
             .catch(this.handleError);
     };
     ContactService = __decorate([

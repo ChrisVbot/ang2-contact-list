@@ -25,6 +25,9 @@
 	<p *ngIf="newContact.name">{{newContact.name}}</p>
 	<p *ngIf="newContact.age">{{newContact.age}}</p>
 	<p *ngIf="newContact.phone">{{newContact.phone}}</p>
-	<button type="submit">Submit</button>
+	<button type="submit" (click)="addNewContact(newContact)">Submit</button>
 	<button type="button" (click)="confirmation=true">Edit</button>
+</div>
+<div *ngIf="errorMessage">
+	<p>Something went wrong: {{errorMessage}}</p>
 </div>

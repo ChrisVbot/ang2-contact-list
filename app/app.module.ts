@@ -12,6 +12,7 @@ import { ContactsComponent } from './contacts.component';
 import { NewContactComponent } from './new-contact.component';
 import { ContactDetailComponent } from './contact-detail.component'
 import { HomeComponent } from './home.component';
+import { ContactSearchComponent } from './contact-search.component';
 
 import { ContactService } from './contact.service';
 
@@ -48,7 +49,8 @@ import { ContactService } from './contact.service';
 		ContactsComponent,
 		NewContactComponent,
 		ContactDetailComponent,
-		HomeComponent
+		HomeComponent,
+		ContactSearchComponent
 	],
 	bootstrap: [ AppComponent ]
 })

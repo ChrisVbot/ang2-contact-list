@@ -12,10 +12,11 @@ import { ContactService } from './contact.service';
 		<h2>Contact List</h2>
 		<ul class="contacts">
 			<li *ngFor="let contact of contacts" (click)="selectContact(contact)" >
-				Name: {{contact.name}}
+				Name: {{contact?.name}}
 			</li>
 		</ul>
 		<add-contact [contacts]="contacts"></add-contact>
+		<contact-search></contact-search>
 	`
 })
 
@@ -37,7 +38,7 @@ export class ContactsComponent implements OnInit {
 
 	getContacts(){
 		this.contactService.getContacts()
-			.then(contacts => this.contacts = contacts);	
+			.subscribe(contacts => this.contacts = contacts);	
 	}
 
 	selectContact(contact: Contact){

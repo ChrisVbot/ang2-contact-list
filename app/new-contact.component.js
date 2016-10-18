@@ -30,7 +30,7 @@ var NewContactComponent = (function () {
             return;
         }
         this.contactService.addContact(contact)
-            .then(function (contact) { return _this.contacts.push(contact); }, function (error) { return _this.errorMessage = 'Something went wrong' + error; });
+            .subscribe(function (contact) { return _this.contacts.push(contact); }, function (error) { return _this.errorMessage = 'Something went wrong' + error; });
     };
     __decorate([
         core_1.Input(), 

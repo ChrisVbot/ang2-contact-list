@@ -20,6 +20,7 @@ var contacts_component_1 = require('./contacts.component');
 var new_contact_component_1 = require('./new-contact.component');
 var contact_detail_component_1 = require('./contact-detail.component');
 var home_component_1 = require('./home.component');
+var contact_search_component_1 = require('./contact-search.component');
 var contact_service_1 = require('./contact.service');
 var AppModule = (function () {
     function AppModule() {
@@ -57,7 +58,8 @@ var AppModule = (function () {
                 contacts_component_1.ContactsComponent,
                 new_contact_component_1.NewContactComponent,
                 contact_detail_component_1.ContactDetailComponent,
-                home_component_1.HomeComponent
+                home_component_1.HomeComponent,
+                contact_search_component_1.ContactSearchComponent
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

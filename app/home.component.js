@@ -22,7 +22,7 @@ var HomeComponent = (function () {
     HomeComponent.prototype.getNewest = function () {
         var _this = this;
         this.contactService.getContacts()
-            .then(function (contacts) { return _this.contact = contacts
+            .subscribe(function (contacts) { return _this.contact = contacts
             .reduce(function (previous, current) {
             if (current.id > previous.id) {
                 return current;

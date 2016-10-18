@@ -29,7 +29,7 @@ export class NewContactComponent {
 	addNewContact(contact: Contact){
 		if (!contact) {return;}
 		this.contactService.addContact(contact)
-			.then(
+			.subscribe(
 				contact => this.contacts.push(contact),
 				error => this.errorMessage = 'Something went wrong' + error 
 			)

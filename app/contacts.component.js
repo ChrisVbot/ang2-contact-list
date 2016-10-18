@@ -22,7 +22,7 @@ var ContactsComponent = (function () {
     ContactsComponent.prototype.getContacts = function () {
         var _this = this;
         this.contactService.getContacts()
-            .then(function (contacts) { return _this.contacts = contacts; });
+            .subscribe(function (contacts) { return _this.contacts = contacts; });
     };
     ContactsComponent.prototype.selectContact = function (contact) {
         var link = ['/contacts', contact.id];
@@ -31,7 +31,7 @@ var ContactsComponent = (function () {
     ContactsComponent = __decorate([
         core_1.Component({
             selector: 'contacts',
-            template: "\n\t\t<h2>Contact List</h2>\n\t\t<ul class=\"contacts\">\n\t\t\t<li *ngFor=\"let contact of contacts\" (click)=\"selectContact(contact)\" >\n\t\t\t\tName: {{contact.name}}\n\t\t\t</li>\n\t\t</ul>\n\t\t<add-contact [contacts]=\"contacts\"></add-contact>\n\t"
+            template: "\n\t\t<h2>Contact List</h2>\n\t\t<ul class=\"contacts\">\n\t\t\t<li *ngFor=\"let contact of contacts\" (click)=\"selectContact(contact)\" >\n\t\t\t\tName: {{contact?.name}}\n\t\t\t</li>\n\t\t</ul>\n\t\t<add-contact [contacts]=\"contacts\"></add-contact>\n\t\t<contact-search></contact-search>\n\t"
         }), 
         __metadata('design:paramtypes', [contact_service_1.ContactService, router_1.Router])
     ], ContactsComponent);
