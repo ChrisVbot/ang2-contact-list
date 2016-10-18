@@ -31,7 +31,8 @@ var ContactsComponent = (function () {
     ContactsComponent = __decorate([
         core_1.Component({
             selector: 'contacts',
-            template: "\n\t\t<h2>Contact List</h2>\n\t\t<ul class=\"contacts\">\n\t\t\t<li *ngFor=\"let contact of contacts\" (click)=\"selectContact(contact)\" >\n\t\t\t\tName: {{contact?.name}}\n\t\t\t</li>\n\t\t</ul>\n\t\t<add-contact [contacts]=\"contacts\"></add-contact>\n\t\t<contact-search></contact-search>\n\t"
+            template: "\n\t\t<h2>Contact List</h2>\n\t\t\t<div class=\"container\">\n\t    \t<div class=\"row\">\n      \t\t<div class=\"col s4 m4\" *ngFor=\"let contact of contacts\" (click)=\"selectContact(contact)\">\n        \t\t<div class=\"card-panel #1976d2 blue darken-2 list\">\n          \t\t<span class=\"white-text\">{{contact?.name}}</span>\n        \t\t</div>\n      \t\t</div>\n    \t</div>\n\t\t</div>\n\t\t<add-contact [contacts]=\"contacts\"></add-contact>\n\t\t<contact-search></contact-search>\n\t",
+            styles: ["\n\t\t.list {\n\t\t\tcursor: pointer;\n\t\t}\n\t"]
         }), 
         __metadata('design:paramtypes', [contact_service_1.ContactService, router_1.Router])
     ], ContactsComponent);

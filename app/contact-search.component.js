@@ -40,7 +40,7 @@ var ContactSearchComponent = (function () {
     ContactSearchComponent = __decorate([
         core_1.Component({
             selector: 'contact-search',
-            template: "\n    <div>\n      <h2>Search Contacts</h2>\n      <input #searchBox id=\"search-box\" (keyup)=\"search(searchBox.value)\" />\n      <div>\n        <div *ngFor=\"let contact of contacts | async\"\n             (click)=\"selectContact(contact)\">\n          {{contact.name}}\n        </div>\n      </div>\n    </div>\n  ",
+            template: "\n    <div>\n      <h2>Search Contacts</h2>\n      <input #searchBox id=\"search-box\" (keyup)=\"search(searchBox.value)\" />\n      <div>\n        <div *ngFor=\"let contact of contacts | async\" (click)=\"selectContact(contact)\">\n          {{contact.name}}\n        </div>\n      </div>\n    </div>\n  ",
             providers: [contact_search_service_1.ContactSearchService]
         }), 
         __metadata('design:paramtypes', [contact_search_service_1.ContactSearchService, router_1.Router])

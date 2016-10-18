@@ -5,11 +5,22 @@ import './rxjs-operators';
 @Component({
 	selector: 'my-app',
 	template: `
-		<h1>Contacts</h1>
-    <a routerLink="/home">Home</a>
-    <a routerLink="/contacts">Contacts</a>
+    <nav>
+      <div class="nav-wrapper">
+        <a routerLink="/home" class="brand-logo right">Contacts</a>
+        <ul id="nav-mobile" class="left">
+        <li>
+          <a routerLink="/home">Home</a>
+        </li>
+        <li>
+          <a routerLink="/contacts">Contacts</a>
+         </li>
+        </ul>
+      </div>
+    </nav>
+
     <router-outlet></router-outlet>
-		`
+    `
 
 })
 

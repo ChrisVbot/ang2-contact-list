@@ -12,8 +12,7 @@ import { ContactSearchService } from './contact-search.service';
       <h2>Search Contacts</h2>
       <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
       <div>
-        <div *ngFor="let contact of contacts | async"
-             (click)="selectContact(contact)">
+        <div *ngFor="let contact of contacts | async" (click)="selectContact(contact)">
           {{contact.name}}
         </div>
       </div>
