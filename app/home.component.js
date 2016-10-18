@@ -9,33 +9,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
 var contact_service_1 = require('./contact.service');
-var ContactsComponent = (function () {
-    function ContactsComponent(contactService, router) {
+var router_1 = require('@angular/router');
+var HomeComponent = (function () {
+    function HomeComponent(contactService, router) {
         this.contactService = contactService;
         this.router = router;
     }
-    ContactsComponent.prototype.ngOnInit = function () {
-        this.getContacts();
+    HomeComponent.prototype.ngOnInit = function () {
+        this.getNewest();
     };
-    ContactsComponent.prototype.getContacts = function () {
+    HomeComponent.prototype.getNewest = function () {
         var _this = this;
         this.contactService.getContacts()
-            .then(function (contacts) { return _this.contacts = contacts; });
+            .then(function (contacts) { return _this.contact = contacts
+            .reduce(function (previous, current) {
+            if (current.id > previous.id) {
+                return current;
+            }
+            else {
+                return previous;
+            }
+        }); });
     };
-    ContactsComponent.prototype.selectContact = function (contact) {
+    HomeComponent.prototype.gotoDetails = function (contact) {
         var link = ['/contacts', contact.id];
         this.router.navigate(link);
     };
-    ContactsComponent = __decorate([
+    HomeComponent = __decorate([
         core_1.Component({
-            selector: 'contacts',
-            template: "\n\t\t<h2>Contact List</h2>\n\t\t<ul class=\"contacts\">\n\t\t\t<li *ngFor=\"let contact of contacts\" (click)=\"selectContact(contact)\" >\n\t\t\t\tName: {{contact.name}}\n\t\t\t</li>\n\t\t</ul>\n\t\t<add-contact [contacts]=\"contacts\"></add-contact>\n\t"
+            selector: 'home',
+            template: "\n    <h3>Contact List Home Page</h3>\n    <h5>Most recently added contact: {{contact?.name}}</h5>\n    <button type=\"button\" (click)=\"gotoDetails(contact)\">Details</button>\n  "
         }), 
         __metadata('design:paramtypes', [contact_service_1.ContactService, router_1.Router])
-    ], ContactsComponent);
-    return ContactsComponent;
+    ], HomeComponent);
+    return HomeComponent;
 }());
-exports.ContactsComponent = ContactsComponent;
-//# sourceMappingURL=contacts.component.js.map
+exports.HomeComponent = HomeComponent;
+//# sourceMappingURL=home.component.js.map

@@ -1,5 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { ActivatedRoute, Params } from '@angular/router';
+import { Location } from '@angular/common';
+
 import { Contact } from './contact';
+import { ContactService } from './contact.service';
+
+
 
 @Component({
 	selector: 'contact-detail',
@@ -18,15 +25,42 @@ import { Contact } from './contact';
 				<label>Phone number: </label>
 				<input [(ngModel)]="contact.phone" placeholder="phone number" />
 			</div>
-			<button type="button" (click)="closeDetails()">Close</button>
+			<button type="button" (click)="update(contact)">Update</button>
+			<button type="button" (click)="delete(contact)">Delete</button>
+			<button type="button" (click)="back()">Go back</button>
 		</div>
 	`
 })
 
-export class ContactDetailComponent {
-	@Input() contact: Contact;
+export class ContactDetailComponent implements OnInit {
+	contact: Contact;
 
-	closeDetails() {
-		this.contact = '';
+	constructor(
+		private contactService: ContactService,
+		private route: ActivatedRoute,
+		private location: Location
+	) {}
+
+	ngOnInit(): void {
+		this.route.params.forEach((params: Params) => {
+			let id = +params['id'];
+			this.contactService.getContactDetails(id)
+				.then(contact => this.contact = contact)
+		})
 	}
+
+	back() {
+		this.location.back();
+	}
+
+	update(contact: Contact){
+		this.contactService.update(contact)
+			.then(()=> this.back())
+	}
+
+	delete(contact: Contact){
+		this.contactService.deleteContact(contact)
+			.then(()=> this.back())
+	}
+	
 }

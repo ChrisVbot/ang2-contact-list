@@ -10,8 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 //form to add new contacts
 var core_1 = require('@angular/core');
+var contact_service_1 = require('./contact.service');
 var NewContactComponent = (function () {
-    function NewContactComponent() {
+    function NewContactComponent(contactService) {
+        this.contactService = contactService;
+        this.errorMessage = null;
         this.newContact = { name: '', age: '', phone: '' };
         this.confirmation = true;
     }
@@ -21,13 +24,25 @@ var NewContactComponent = (function () {
     NewContactComponent.prototype.confirm = function () {
         this.confirmation = false;
     };
+    NewContactComponent.prototype.addNewContact = function (contact) {
+        var _this = this;
+        if (!contact) {
+            return;
+        }
+        this.contactService.addContact(contact)
+            .then(function (contact) { return _this.contacts.push(contact); }, function (error) { return _this.errorMessage = 'Something went wrong' + error; });
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array)
+    ], NewContactComponent.prototype, "contacts", void 0);
     NewContactComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'add-contact',
             templateUrl: 'new-contact.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [contact_service_1.ContactService])
     ], NewContactComponent);
     return NewContactComponent;
 }());

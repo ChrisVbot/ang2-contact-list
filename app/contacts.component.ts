@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Router } from '@angular/router';
+
 import { Contact } from './contact';
 
 import { ContactService } from './contact.service';
@@ -13,7 +15,7 @@ import { ContactService } from './contact.service';
 				Name: {{contact.name}}
 			</li>
 		</ul>
-		<contact-detail [contact]="selectedContact"></contact-detail>
+		<add-contact [contacts]="contacts"></add-contact>
 	`
 })
 
@@ -22,22 +24,27 @@ export class ContactsComponent implements OnInit {
 
 	selectedContact: Contact;
 
-	constructor(private contactService: ContactService){
+	constructor(
+			private contactService: ContactService,
+			private router: Router
+		){
 		
 	}
 
-	ngOnInit(){
+	ngOnInit(): void {
 		this.getContacts();
 	}
 
 	getContacts(){
-		this.contacts = this.contactService.getContacts();	
+		this.contactService.getContacts()
+			.then(contacts => this.contacts = contacts);	
 	}
 
-	selectContact(contact){
-		this.selectedContact = contact;
+	selectContact(contact: Contact){
+		let link = ['/contacts', contact.id];
+		this.router.navigate(link)
 	}
-	
+
 
 }
 

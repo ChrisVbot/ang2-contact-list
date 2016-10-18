@@ -9,13 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+require('./rxjs-operators');
 var AppComponent = (function () {
     function AppComponent() {
     }
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n\t\t<h1>Contacts</h1>\n\t\t<add-contact></add-contact>\n\t\t<contacts></contacts>\n\n\t\t"
+            template: "\n\t\t<h1>Contacts</h1>\n    <a routerLink=\"/home\">Home</a>\n    <a routerLink=\"/contacts\">Contacts</a>\n    <router-outlet></router-outlet>\n\t\t"
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

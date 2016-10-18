@@ -1,7 +1,8 @@
 //form to add new contacts
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { Contact } from './contact';
+import { ContactService } from './contact.service';
 
 @Component({
 	moduleId: module.id,
@@ -10,7 +11,10 @@ import { Contact } from './contact';
 })
 
 export class NewContactComponent {
+	@Input() contacts: Contact[];
+	errorMessage = null;
 	newContact = {name: '', age: '', phone: ''}
+	
 	clear(){
 		this.newContact = {name: '', age: '', phone: ''}
 	}
@@ -20,5 +24,28 @@ export class NewContactComponent {
 	confirm() {
 		this.confirmation = false;
 	}
+	constructor(private contactService: ContactService){}
+
+	addNewContact(contact: Contact){
+		if (!contact) {return;}
+		this.contactService.addContact(contact)
+			.then(
+				contact => this.contacts.push(contact),
+				error => this.errorMessage = 'Something went wrong' + error 
+			)
+
+	}
+
 
 }
+
+
+
+
+
+
+
+
+
+
+
