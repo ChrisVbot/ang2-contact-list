@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col s12 m6">
+    <div myHover class="card">
+      <div class="card-content white-text">
+        <span class="card-title">
+          Contacts Home
+        </span>
+        <h4>Most recently added contact: {{contact?.name}}</h4>
+      </div>
+      <div class="card-action">
+      <button class="waves-effect waves-light btn-large" type="button" (click)="gotoDetails(contact)">Details</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<contact-search></contact-search>

@@ -1,0 +1,13 @@
+.card {
+  background: #7b1fa2;
+}
+
+.search-results {
+  padding: 10px;
+  cursor: pointer;
+}
+
+ul .search-results:hover {
+  background: #8e24aa;
+}
+
