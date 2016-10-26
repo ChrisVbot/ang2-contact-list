@@ -9,19 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-require('./rxjs-operators');
-var AppComponent = (function () {
-    function AppComponent() {
+var NameFilterPipe = (function () {
+    function NameFilterPipe() {
     }
-    AppComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'my-app',
-            templateUrl: 'app.component.html',
+    NameFilterPipe.prototype.transform = function (contacts, searchTerm) {
+        if (searchTerm.length === 0)
+            return contacts;
+        return contacts.filter(function (term) { return term.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1; });
+    };
+    NameFilterPipe = __decorate([
+        core_1.Pipe({
+            name: 'filterable'
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], NameFilterPipe);
+    return NameFilterPipe;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.NameFilterPipe = NameFilterPipe;
+//# sourceMappingURL=name-filter.pipe.js.map

@@ -9,19 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-require('./rxjs-operators');
-var AppComponent = (function () {
-    function AppComponent() {
+var CapitalizerPipe = (function () {
+    function CapitalizerPipe() {
     }
-    AppComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'my-app',
-            templateUrl: 'app.component.html',
+    CapitalizerPipe.prototype.transform = function (name) {
+        return name.replace(/\w\S*/g, function (text) {
+            return text.charAt(0).toUpperCase() + text.substr(1).toLowerCase();
+        });
+    };
+    CapitalizerPipe = __decorate([
+        core_1.Pipe({
+            name: 'capitalizer'
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], CapitalizerPipe);
+    return CapitalizerPipe;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.CapitalizerPipe = CapitalizerPipe;
+//# sourceMappingURL=capitalizer.pipe.js.map

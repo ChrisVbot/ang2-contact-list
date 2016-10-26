@@ -1,0 +1,55 @@
+<div (mouseenter)="growButton()" (mouseleave)="shrinkButton()" [@growButton]="buttonState" class="center-align">
+  <button (click)="showNew = !showNew" class="btn waves-effect waves-light #5c6bc0 indigo lighten-1">
+    Add Contact
+  </button>
+</div>
+<div #newContactInput *ngIf = "showNew" [@bringUpMenu]="newContactInput.state">
+  <div class="container" [hidden]="!confirmation">
+    <h3 class="center-align">Add contact</h3>
+    
+    <form class="center-align" [formGroup]="newContactForm" (ngSubmit)="confirm()">
+      
+      <div>
+        <input myInput placeholder="Name" type="text" formControlName="name">
+        <div class="required-field" *ngIf="newContactForm.get('name').hasError('required') && newContactForm.get('name').touched">
+          Name is required
+        </div>
+      </div>  
+
+      <div>
+        <input myInput placeholder="Age" type="number" formControlName="age">
+        <div class="required-field" *ngIf="newContactForm.get('age').hasError('required') && newContactForm.get('age').touched">
+          Age is required
+        </div>
+      </div>
+
+      <div>
+        <input myInput placeholder="Phone number" type="text" formControlName="phone" >
+        <div class="required-field" *ngIf="newContactForm.get('phone').hasError('required') && newContactForm.get('phone').touched">
+          Phone is required
+        </div>
+      </div>
+
+      <div class="center-align">
+        <button [disabled]="newContactForm.invalid" class="waves-effect waves-light btn #5c6bc0 indigo lighten-1
+    " type="submit">Submit</button>
+        <button class="waves-effect waves-light btn #5c6bc0 indigo lighten-1
+    " type="button" (click)="resetForm()">Clear</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="new-confirmation container center-align" [hidden]="confirmation">
+    <h3>You entered:</h3>
+    <p>{{newContactForm.value.name}}</p>
+    <p>{{newContactForm.value.age}}</p>
+    <p>{{newContactForm.value.phone}}</p>
+    <button class="waves-effect waves-light btn #5c6bc0 indigo lighten-1
+  " type="submit" (click)="addNewContact(newContactForm.value)">Submit</button>
+    <button class="waves-effect waves-light btn #5c6bc0 indigo lighten-1
+  " type="button" (click)="confirmation=true">Edit</button>
+  </div>
+  <div *ngIf="errorMessage">
+    <p>Something went wrong: {{errorMessage}}</p>
+  </div>
+</div>

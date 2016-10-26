@@ -6,7 +6,7 @@ import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Contact } from '../shared/contact-model';
-import { ContactService } from '../shared/directives/contact.service';
+import { ContactService } from '../shared/services/contact.service';
 
 
 

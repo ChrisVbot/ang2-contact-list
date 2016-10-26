@@ -9,19 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-require('./rxjs-operators');
-var AppComponent = (function () {
-    function AppComponent() {
+var AlphabetizerPipe = (function () {
+    function AlphabetizerPipe() {
     }
-    AppComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'my-app',
-            templateUrl: 'app.component.html',
+    AlphabetizerPipe.prototype.transform = function (contacts) {
+        if (contacts === null)
+            return false;
+        return contacts.sort(function (a, b) {
+            if (a.name < b.name)
+                return -1;
+            if (a.name > b.name)
+                return 1;
+            return 0;
+        });
+    };
+    AlphabetizerPipe = __decorate([
+        core_1.Pipe({
+            name: 'alphabetical'
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], AlphabetizerPipe);
+    return AlphabetizerPipe;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.AlphabetizerPipe = AlphabetizerPipe;
+//# sourceMappingURL=alphabetizer.pipe.js.map
