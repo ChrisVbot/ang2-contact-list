@@ -9,27 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AlphabetizerPipe = (function () {
-    function AlphabetizerPipe() {
+var http_1 = require('@angular/http');
+var ContactSearchService = (function () {
+    function ContactSearchService(http) {
+        this.http = http;
     }
-    AlphabetizerPipe.prototype.transform = function (contacts) {
-        if (contacts === null)
-            return null;
-        return contacts.sort(function (a, b) {
-            if (a.name < b.name)
-                return -1;
-            if (a.name > b.name)
-                return 1;
-            return 0;
-        });
+    ContactSearchService.prototype.search = function (term) {
+        return this.http.get("app/contactslist/?name=" + term)
+            .map(function (res) { return res.json().data; });
     };
-    AlphabetizerPipe = __decorate([
-        core_1.Pipe({
-            name: 'alphabetical'
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AlphabetizerPipe);
-    return AlphabetizerPipe;
+    ContactSearchService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [http_1.Http])
+    ], ContactSearchService);
+    return ContactSearchService;
 }());
-exports.AlphabetizerPipe = AlphabetizerPipe;
-//# sourceMappingURL=alphabetizer.pipe.js.map
+exports.ContactSearchService = ContactSearchService;
+//# sourceMappingURL=contact-search.service.js.map

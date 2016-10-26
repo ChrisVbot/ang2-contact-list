@@ -41,9 +41,12 @@ export class ContactDetailComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
       let id = +params['id'];
       this.contactService.getContactDetails(id)
-        .subscribe(contact => this.contact = contact)
+        .subscribe(contact => {
+          this.contact = contact
+          this.populateDetails();
+        })
     });
-    this.populateDetails();
+    
   }
 
   populateDetails(): void {

@@ -11,32 +11,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var common_1 = require('@angular/common');
-var forms_1 = require('@angular/forms');
-var contact_service_1 = require('../shared/services/contact.service');
+var contact_service_1 = require('./contact.service');
 var ContactDetailComponent = (function () {
-    function ContactDetailComponent(contactService, route, location, formBuilder) {
+    function ContactDetailComponent(contactService, route, location) {
         this.contactService = contactService;
         this.route = route;
         this.location = location;
-        this.formBuilder = formBuilder;
     }
     ContactDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params.forEach(function (params) {
             var id = +params['id'];
             _this.contactService.getContactDetails(id)
-                .subscribe(function (contact) {
-                _this.contact = contact;
-                _this.populateDetails();
-            });
-        });
-    };
-    ContactDetailComponent.prototype.populateDetails = function () {
-        this.contactDetails = this.formBuilder.group({
-            id: [this.contact.id],
-            name: [this.contact.name, [forms_1.Validators.required]],
-            age: [this.contact.age, [forms_1.Validators.required]],
-            phone: [this.contact.phone, [forms_1.Validators.required]]
+                .subscribe(function (contact) { return _this.contact = contact; });
         });
     };
     ContactDetailComponent.prototype.back = function () {
@@ -54,14 +41,13 @@ var ContactDetailComponent = (function () {
     };
     ContactDetailComponent = __decorate([
         core_1.Component({
-            moduleId: module.id,
             selector: 'contact-detail',
-            templateUrl: 'contact-detail.component.html',
-            styles: ["\n    .required-field {\n      background: #ffcdd2;\n      color: #632827;\n      padding: 15px;\n      margin: -20px auto 20px auto;\n      border-radius: 4px;\n      width: 100%;\n    }\n  "]
+            template: "\n\t\t<div *ngIf=\"contact\">\n\t\t\t<h3>{{contact.name}} details</h3>\n\t\t\t<div>\n\t\t\t\t<label>Name: </label>\n\t\t\t\t<input [(ngModel)]=\"contact.name\" placeholder=\"name\"/>\n\t\t\t</div>\n\t\t\t<div>\n\t\t\t\t<label>Age: </label>\n\t\t\t\t<input [(ngModel)]=\"contact.age\" placeholder=\"age\"/>\n\t\t\t</div>\n\t\t\t<div>\n\t\t\t\t<label>Phone number: </label>\n\t\t\t\t<input [(ngModel)]=\"contact.phone\" placeholder=\"phone number\" />\n\t\t\t</div>\n\t\t\t<button type=\"button\" (click)=\"update(contact)\">Update</button>\n\t\t\t<button type=\"button\" (click)=\"delete(contact)\">Delete</button>\n\t\t\t<button type=\"button\" (click)=\"back()\">Go back</button>\n\t\t</div>\n\t"
         }), 
-        __metadata('design:paramtypes', [contact_service_1.ContactService, router_1.ActivatedRoute, common_1.Location, forms_1.FormBuilder])
+        __metadata('design:paramtypes', [(typeof (_a = typeof contact_service_1.ContactService !== 'undefined' && contact_service_1.ContactService) === 'function' && _a) || Object, router_1.ActivatedRoute, common_1.Location])
     ], ContactDetailComponent);
     return ContactDetailComponent;
+    var _a;
 }());
 exports.ContactDetailComponent = ContactDetailComponent;
 //# sourceMappingURL=contact-detail.component.js.map
