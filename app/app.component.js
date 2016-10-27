@@ -18,6 +18,7 @@ var AppComponent = (function () {
             moduleId: module.id,
             selector: 'my-app',
             templateUrl: 'app.component.html',
+            styles: ["\n    .site {\n      display: flex;\n      min-height: 100vh;\n      flex-direction: column;\n    }\n    .site-content {\n      flex: 1 0 auto;\n    }\n  "]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
