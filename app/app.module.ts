@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
+import { AppRoutingModule } from './app-routing.module';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api/in-memory-web-api.module';
 import { InMemoryDataService } from './in-memory-data.service';
@@ -23,8 +24,6 @@ import { HoverDirective } from './contacts/shared/directives/hover.directive';
 import { CapitalizerPipe } from './contacts/shared/pipes/capitalizer.pipe';
 import { AlphabetizerPipe } from './contacts/shared/pipes/alphabetizer.pipe';
 import { NameFilterPipe } from './contacts/shared/pipes/name-filter.pipe';
-
-import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
 	imports: [ 

@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
+var app_routing_module_1 = require('./app-routing.module');
 var in_memory_web_api_module_1 = require('angular-in-memory-web-api/in-memory-web-api.module');
 var in_memory_data_service_1 = require('./in-memory-data.service');
 var app_component_1 = require('./app.component');
@@ -27,7 +28,6 @@ var hover_directive_1 = require('./contacts/shared/directives/hover.directive');
 var capitalizer_pipe_1 = require('./contacts/shared/pipes/capitalizer.pipe');
 var alphabetizer_pipe_1 = require('./contacts/shared/pipes/alphabetizer.pipe');
 var name_filter_pipe_1 = require('./contacts/shared/pipes/name-filter.pipe');
-var app_routing_module_1 = require('./app-routing.module');
 var AppModule = (function () {
     function AppModule() {
     }

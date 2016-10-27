@@ -5,7 +5,9 @@
         <span class="card-title">
           Contacts Home
         </span>
-        <h4>Most recently added contact: {{contact?.name}}</h4>
+        <loading-spinner [loading]="loading">
+          <h4>Most recently added contact: {{contact?.name}}</h4>
+        </loading-spinner>
       </div>
       <div class="card-action">
       <button class="waves-effect waves-light btn-large" type="button" (click)="gotoDetails(contact)">Details</button>

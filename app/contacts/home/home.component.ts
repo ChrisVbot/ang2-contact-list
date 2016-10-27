@@ -22,6 +22,7 @@ import { Router } from '@angular/router';
 
 export class HomeComponent implements OnInit {
   contact: Contact;
+  loading: boolean;
 
   constructor(
       private contactService: ContactService,
@@ -30,11 +31,15 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getNewest();
+    this.loading = true;
   }
 
   getNewest(){
     this.contactService.getNewest()
-      .subscribe(contact => this.contact = contact)
+      .subscribe(contact => {
+        this.contact = contact;
+        this.loading = false;
+      })
   }
 
   gotoDetails(contact: Contact){

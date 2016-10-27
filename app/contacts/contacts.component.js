@@ -18,11 +18,15 @@ var ContactsComponent = (function () {
     }
     ContactsComponent.prototype.ngOnInit = function () {
         this.getContacts();
+        this.loading = true;
     };
     ContactsComponent.prototype.getContacts = function () {
         var _this = this;
         this.contactService.getContacts()
-            .subscribe(function (contacts) { return _this.contacts = contacts; }, function (error) { return console.log(error); });
+            .subscribe(function (contacts) {
+            _this.contacts = contacts;
+            _this.loading = false;
+        }, function (error) { return console.log(error); });
     };
     ContactsComponent.prototype.selectContact = function (contact) {
         var link = ['/contacts', contact.id];

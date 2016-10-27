@@ -17,6 +17,7 @@ import { ContactService } from './shared/services/contact.service';
 export class ContactsComponent implements OnInit {
   contacts: Contact[];
   selectedContact: Contact;
+  loading: boolean;
 
   constructor(
       private contactService: ContactService,
@@ -25,12 +26,16 @@ export class ContactsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getContacts();
+    this.loading = true;
   }
 
   getContacts(): void {
     this.contactService.getContacts()
       .subscribe(
-        contacts => this.contacts = contacts,
+        contacts => {
+          this.contacts = contacts
+          this.loading = false;
+        },
         error => console.log(error)
       );  
   }
