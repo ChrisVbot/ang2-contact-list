@@ -39,7 +39,6 @@ export class ContactSearchComponent implements OnInit {
     })
   }
     
-
   selectContact(contact: Contact): void {
     let link = ['/contacts', contact.id];
     this.router.navigate(link)

@@ -14,6 +14,8 @@ import { Router } from '@angular/router';
   styles: [`
     .card { 
       background: #1565c0;
+      height: 300px;
+      overflow-y: auto;
     }
   `],
   providers: [ContactSearchService]

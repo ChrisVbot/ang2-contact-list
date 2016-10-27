@@ -38,7 +38,7 @@ var HomeComponent = (function () {
             moduleId: module.id,
             selector: 'home',
             templateUrl: 'home.component.html',
-            styles: ["\n    .card { \n      background: #1565c0;\n    }\n  "],
+            styles: ["\n    .card { \n      background: #1565c0;\n      height: 300px;\n      overflow-y: auto;\n    }\n  "],
             providers: [contact_search_service_1.ContactSearchService]
         }), 
         __metadata('design:paramtypes', [contact_service_1.ContactService, router_1.Router])

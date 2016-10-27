@@ -1,5 +1,7 @@
 .card {
   background: #7b1fa2;
+  height: 300px;
+  overflow-y: auto;
 }
 
 .search-results {
