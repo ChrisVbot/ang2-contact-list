@@ -24,6 +24,7 @@ import { CapitalizerPipe } from './contacts/shared/pipes/capitalizer.pipe';
 import { AlphabetizerPipe } from './contacts/shared/pipes/alphabetizer.pipe';
 import { NameFilterPipe } from './contacts/shared/pipes/name-filter.pipe';
 
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
 	imports: [ 
@@ -32,25 +33,7 @@ import { NameFilterPipe } from './contacts/shared/pipes/name-filter.pipe';
 		ReactiveFormsModule,
 		HttpModule,
 		InMemoryWebApiModule.forRoot(InMemoryDataService),
-		RouterModule.forRoot([
-			{
-				path: 'contacts/:id',
-				component: ContactDetailComponent
-			},
-			{
-				path: 'home',
-				component: HomeComponent
-			},
-			{
-				path: 'contacts',
-				component: ContactsComponent
-			},
-			{
-				path: '',
-				redirectTo: '/home',
-				pathMatch: 'full'
-			}
-		])
+		AppRoutingModule
 	],
 	providers: [ ContactService ],
 	declarations: [ 

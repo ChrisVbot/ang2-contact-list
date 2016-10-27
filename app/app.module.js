@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
-var router_1 = require('@angular/router');
 var http_1 = require('@angular/http');
 var in_memory_web_api_module_1 = require('angular-in-memory-web-api/in-memory-web-api.module');
 var in_memory_data_service_1 = require('./in-memory-data.service');
@@ -28,6 +27,7 @@ var hover_directive_1 = require('./contacts/shared/directives/hover.directive');
 var capitalizer_pipe_1 = require('./contacts/shared/pipes/capitalizer.pipe');
 var alphabetizer_pipe_1 = require('./contacts/shared/pipes/alphabetizer.pipe');
 var name_filter_pipe_1 = require('./contacts/shared/pipes/name-filter.pipe');
+var app_routing_module_1 = require('./app-routing.module');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -39,25 +39,7 @@ var AppModule = (function () {
                 forms_1.ReactiveFormsModule,
                 http_1.HttpModule,
                 in_memory_web_api_module_1.InMemoryWebApiModule.forRoot(in_memory_data_service_1.InMemoryDataService),
-                router_1.RouterModule.forRoot([
-                    {
-                        path: 'contacts/:id',
-                        component: contact_detail_component_1.ContactDetailComponent
-                    },
-                    {
-                        path: 'home',
-                        component: home_component_1.HomeComponent
-                    },
-                    {
-                        path: 'contacts',
-                        component: contacts_component_1.ContactsComponent
-                    },
-                    {
-                        path: '',
-                        redirectTo: '/home',
-                        pathMatch: 'full'
-                    }
-                ])
+                app_routing_module_1.AppRoutingModule
             ],
             providers: [contact_service_1.ContactService],
             declarations: [
