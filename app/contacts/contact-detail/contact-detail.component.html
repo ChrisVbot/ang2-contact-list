@@ -1,33 +1,35 @@
-<div class="container" *ngIf="contact">
-  <form [formGroup]="contactDetails">
-    <h3>{{contactDetails.value.name}}'s details</h3>
-    
-    <div>
-      <label>Name: </label>
-      <input formControlName="name" placeholder="name"/>
-        <div class="required-field" *ngIf="contactDetails.get('name').hasError('required') && contactDetails.get('name').touched">
-        Name is required
-        </div>
-    </div>
-    
-    <div>
-      <label>Age: </label>
-      <input formControlName="age" type="number" placeholder="age"/>
-        <div class="required-field" *ngIf="contactDetails.get('name').hasError('required') && contactDetails.get('age').touched">
-        Age is required
-        </div>
-    </div>
+<loading-spinner [loading]="loading">
+  <div class="container" *ngIf="contact">
+    <form [formGroup]="contactDetails">
+      <h3>{{contactDetails.value.name}}'s details</h3>
+      
+      <div>
+        <label>Name: </label>
+        <input formControlName="name" placeholder="name"/>
+          <div class="required-field" *ngIf="contactDetails.get('name').hasError('required') && contactDetails.get('name').touched">
+          Name is required
+          </div>
+      </div>
+      
+      <div>
+        <label>Age: </label>
+        <input formControlName="age" type="number" placeholder="age"/>
+          <div class="required-field" *ngIf="contactDetails.get('name').hasError('required') && contactDetails.get('age').touched">
+          Age is required
+          </div>
+      </div>
 
-    <div>
-      <label>Phone number: </label>
-      <input formControlName="phone" placeholder="phone number" />
-        <div class="required-field" *ngIf="contactDetails.get('phone').hasError('required') && contactDetails.get('phone').touched">
-        Phone is required
-        </div>
-    </div>
+      <div>
+        <label>Phone number: </label>
+        <input formControlName="phone" placeholder="phone number" />
+          <div class="required-field" *ngIf="contactDetails.get('phone').hasError('required') && contactDetails.get('phone').touched">
+          Phone is required
+          </div>
+      </div>
 
-    <button [disabled]="contactDetails.invalid" class="btn-large waves-effect waves-light red" type="button" (click)="update(contactDetails.value)">Update</button>
-    <button class="btn-large waves-effect waves-light red" type="button" (click)="delete(contactDetails.value)" >Delete</button>
-    <button class="btn-large waves-effect waves-light red" type="button" (click)="back()">Go back</button>
-  </form>
-</div>
+      <button [disabled]="contactDetails.invalid" class="btn-large waves-effect waves-light red" type="button" (click)="update(contactDetails.value)">Update</button>
+      <button class="btn-large waves-effect waves-light red" type="button" (click)="delete(contactDetails.value)" >Delete</button>
+      <button class="btn-large waves-effect waves-light red" type="button" (click)="back()">Go back</button>
+    </form>
+  </div>
+</loading-spinner>

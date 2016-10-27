@@ -29,6 +29,7 @@ import { ContactService } from '../shared/services/contact.service';
 export class ContactDetailComponent implements OnInit {
   contact: Contact;
   contactDetails: FormGroup;
+  loading: boolean;
 
   constructor(
     private contactService: ContactService,
@@ -38,6 +39,7 @@ export class ContactDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loading = true;
     this.route.params.forEach((params: Params) => {
       let id = +params['id'];
       this.contactService.getContactDetails(id)
@@ -46,10 +48,10 @@ export class ContactDetailComponent implements OnInit {
           this.populateDetails();
         })
     });
-    
   }
 
   populateDetails(): void {
+    this.loading = false;
     this.contactDetails = this.formBuilder.group({
       id: [this.contact.id],
       name: [this.contact.name, [Validators.required]],

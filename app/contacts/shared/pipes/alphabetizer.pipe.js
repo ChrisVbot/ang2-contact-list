@@ -13,7 +13,7 @@ var AlphabetizerPipe = (function () {
     function AlphabetizerPipe() {
     }
     AlphabetizerPipe.prototype.transform = function (contacts) {
-        if (contacts === null)
+        if (!contacts)
             return null;
         return contacts.sort(function (a, b) {
             if (a.name < b.name)

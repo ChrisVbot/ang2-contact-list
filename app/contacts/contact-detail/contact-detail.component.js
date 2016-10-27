@@ -22,6 +22,7 @@ var ContactDetailComponent = (function () {
     }
     ContactDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.loading = true;
         this.route.params.forEach(function (params) {
             var id = +params['id'];
             _this.contactService.getContactDetails(id)
@@ -32,6 +33,7 @@ var ContactDetailComponent = (function () {
         });
     };
     ContactDetailComponent.prototype.populateDetails = function () {
+        this.loading = false;
         this.contactDetails = this.formBuilder.group({
             id: [this.contact.id],
             name: [this.contact.name, [forms_1.Validators.required]],

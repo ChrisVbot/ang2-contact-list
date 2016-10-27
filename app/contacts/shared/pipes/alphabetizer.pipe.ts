@@ -8,7 +8,7 @@ import { Contact } from '../contact-model';
 
 export class AlphabetizerPipe implements PipeTransform {
   transform(contacts: Contact[]): any {
-    if (contacts === null) return null;
+    if (!contacts) return null;
     return contacts.sort((a, b) => {
       if (a.name < b.name) return -1;
       if (a.name > b.name)return 1;

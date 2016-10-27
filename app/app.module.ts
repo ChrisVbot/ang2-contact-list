@@ -13,6 +13,7 @@ import { NewContactComponent } from './contacts/new-contact/new-contact.componen
 import { ContactDetailComponent } from './contacts/contact-detail/contact-detail.component';
 import { HomeComponent } from './contacts/home/home.component';
 import { ContactSearchComponent } from './contacts/contact-search/contact-search.component';
+import { SpinnerComponent } from './contacts/loading-component/loading.component';
 
 import { ContactService } from './contacts/shared/services/contact.service';
 
@@ -63,7 +64,8 @@ import { NameFilterPipe } from './contacts/shared/pipes/name-filter.pipe';
 		HoverDirective,
 		CapitalizerPipe,
 		AlphabetizerPipe,
-		NameFilterPipe
+		NameFilterPipe,
+		SpinnerComponent
 	],
 	bootstrap: [ AppComponent ]
 })

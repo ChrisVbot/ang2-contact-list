@@ -21,6 +21,7 @@ var new_contact_component_1 = require('./contacts/new-contact/new-contact.compon
 var contact_detail_component_1 = require('./contacts/contact-detail/contact-detail.component');
 var home_component_1 = require('./contacts/home/home.component');
 var contact_search_component_1 = require('./contacts/contact-search/contact-search.component');
+var loading_component_1 = require('./contacts/loading-component/loading.component');
 var contact_service_1 = require('./contacts/shared/services/contact.service');
 var searchbar_directive_1 = require('./contacts/shared/directives/searchbar.directive');
 var hover_directive_1 = require('./contacts/shared/directives/hover.directive');
@@ -70,7 +71,8 @@ var AppModule = (function () {
                 hover_directive_1.HoverDirective,
                 capitalizer_pipe_1.CapitalizerPipe,
                 alphabetizer_pipe_1.AlphabetizerPipe,
-                name_filter_pipe_1.NameFilterPipe
+                name_filter_pipe_1.NameFilterPipe,
+                loading_component_1.SpinnerComponent
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 
