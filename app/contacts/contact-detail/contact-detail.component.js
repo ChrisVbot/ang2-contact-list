@@ -13,7 +13,6 @@ var router_1 = require('@angular/router');
 var common_1 = require('@angular/common');
 var forms_1 = require('@angular/forms');
 var contact_service_1 = require('../shared/services/contact.service');
-// import { ConfirmDeactivateGuard } from '../shared/guards/can-deactivate-detail.guard';
 var ContactDetailComponent = (function () {
     function ContactDetailComponent(contactService, route, location, formBuilder) {
         this.contactService = contactService;
@@ -42,15 +41,12 @@ var ContactDetailComponent = (function () {
             age: [this.contact.age, [forms_1.Validators.required]],
             phone: [this.contact.phone, [forms_1.Validators.required]]
         });
-        this.origDetails = this.contactDetails.value;
     };
-    ContactDetailComponent.prototype.hasChanges = function () {
-        if ((!this.contact) || JSON.stringify(this.contact) === JSON.stringify(this.contactDetails.value))
-            return false;
-        else {
-            return true;
-        }
-    };
+    // hasChanges(): boolean {
+    //   if ((!this.contact) || JSON.stringify(this.contact) === JSON.stringify(this.contactDetails.value))
+    //     return false;
+    //   else {return true;}
+    // }
     ContactDetailComponent.prototype.back = function () {
         this.location.back();
     };
@@ -66,6 +62,13 @@ var ContactDetailComponent = (function () {
         var _this = this;
         this.contactService.deleteContact(contact)
             .subscribe(function () { return _this.back(); });
+    };
+    ContactDetailComponent.prototype.canDeactivate = function () {
+        // Allow synchronous navigation (`true`) if no contact or the contact info is unchanged
+        if ((!this.contact) || JSON.stringify(this.contact) === JSON.stringify(this.contactDetails.value)) {
+            return true;
+        }
+        return window.confirm('Do you want to go back? Your unsaved changes will be lost');
     };
     ContactDetailComponent = __decorate([
         core_1.Component({

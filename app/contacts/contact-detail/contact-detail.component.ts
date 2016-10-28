@@ -8,8 +8,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Contact } from '../shared/contact-model';
 import { ContactService } from '../shared/services/contact.service';
 
-// import { ConfirmDeactivateGuard } from '../shared/guards/can-deactivate-detail.guard';
-
 @Component({
   moduleId: module.id,
   selector: 'contact-detail',
@@ -35,7 +33,6 @@ export class ContactDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private formBuilder: FormBuilder
-    // private guard: ConfirmDeactivateGuard
   ) {}
 
   ngOnInit(): void {
@@ -47,7 +44,7 @@ export class ContactDetailComponent implements OnInit {
       let id = +params['id'];
       this.contactService.getContactDetails(id)
         .subscribe(contact => {
-          this.contact = contact
+          this.contact = contact;
           this.populateDetails();
         })
     });
@@ -60,14 +57,13 @@ export class ContactDetailComponent implements OnInit {
       age: [this.contact.age, [Validators.required]],
       phone: [this.contact.phone, [Validators.required]]
     })
-    this.origDetails = this.contactDetails.value;
   }
 
-  hasChanges(): boolean {
-    if ((!this.contact) || JSON.stringify(this.contact) === JSON.stringify(this.contactDetails.value))
-      return false;
-    else {return true;}
-  }
+  // hasChanges(): boolean {
+  //   if ((!this.contact) || JSON.stringify(this.contact) === JSON.stringify(this.contactDetails.value))
+  //     return false;
+  //   else {return true;}
+  // }
 
   back() {
     this.location.back();
@@ -84,6 +80,14 @@ export class ContactDetailComponent implements OnInit {
   delete(contact: Contact){
     this.contactService.deleteContact(contact)
       .subscribe(()=> this.back())
+  }
+
+   canDeactivate(): Promise<boolean> | boolean {
+    // Allow synchronous navigation (`true`) if no contact or the contact info is unchanged
+    if ((!this.contact) || JSON.stringify(this.contact) === JSON.stringify(this.contactDetails.value)) {
+      return true;
+    }
+    return window.confirm('Do you want to go back? Your unsaved changes will be lost');
   }
   
 }

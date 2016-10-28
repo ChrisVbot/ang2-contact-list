@@ -13,10 +13,7 @@ var ConfirmDeactivateGuard = (function () {
     function ConfirmDeactivateGuard() {
     }
     ConfirmDeactivateGuard.prototype.canDeactivate = function (component) {
-        if (component.hasChanges()) {
-            return window.confirm('Do you want to go back? Your unsaved changes will be lost');
-        }
-        return true;
+        return component.canDeactivate ? component.canDeactivate() : true;
     };
     ConfirmDeactivateGuard = __decorate([
         core_1.Injectable(), 

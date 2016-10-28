@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { CanDeactivate } from '@angular/router';
-import { ContactDetailComponent } from '../../contact-detail/contact-detail.component';
+import { Observable } from 'rxjs/Observable';
+
+export interface CanComponentDeactivate {
+  canDeactivate: () => Observable<boolean> | Promise<boolean> | boolean;
+}
 
 @Injectable()
-export class ConfirmDeactivateGuard implements CanDeactivate<ContactDetailComponent> {
+export class ConfirmDeactivateGuard implements CanDeactivate<CanComponentDeactivate> {
 
-  canDeactivate(component: ContactDetailComponent){
-    if (component.hasChanges()) {
-      return window.confirm('Do you want to go back? Your unsaved changes will be lost')
-    }
-    return true;
+  canDeactivate(component: CanComponentDeactivate){
+    return component.canDeactivate ? component.canDeactivate() : true;
   }
-
 }
