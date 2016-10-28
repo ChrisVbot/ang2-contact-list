@@ -19,14 +19,12 @@ var HomeComponent = (function () {
     }
     HomeComponent.prototype.ngOnInit = function () {
         this.getNewest();
-        this.loading = true;
     };
     HomeComponent.prototype.getNewest = function () {
         var _this = this;
         this.contactService.getNewest()
             .subscribe(function (contact) {
             _this.contact = contact;
-            _this.loading = false;
         });
     };
     HomeComponent.prototype.gotoDetails = function (contact) {

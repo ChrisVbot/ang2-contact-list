@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { NgSwitch, NgSwitchCase } from '@angular/common';
 
 @Component({
@@ -22,6 +22,15 @@ import { NgSwitch, NgSwitchCase } from '@angular/common';
   styleUrls: [`loading-component.css`]
 })
 
-export class SpinnerComponent {
-  @Input() loading: boolean;
+export class SpinnerComponent implements OnInit, OnChanges {
+  @Input() loadCheck;
+  loading: boolean;
+
+  ngOnInit(): void {
+    this.loading = true;
+  }
+
+  ngOnChanges(): void {
+    this.loading = false;
+  }
 }

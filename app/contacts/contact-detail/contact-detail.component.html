@@ -1,4 +1,4 @@
-<loading-spinner [loading]="loading">
+<loading-spinner [loadCheck]="contact">
   <div class="container" *ngIf="contact">
     <form [formGroup]="contactDetails">
       <h3>{{contactDetails.value.name}}'s details</h3>

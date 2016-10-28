@@ -12,10 +12,16 @@ var core_1 = require('@angular/core');
 var SpinnerComponent = (function () {
     function SpinnerComponent() {
     }
+    SpinnerComponent.prototype.ngOnInit = function () {
+        this.loading = true;
+    };
+    SpinnerComponent.prototype.ngOnChanges = function () {
+        this.loading = false;
+    };
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', Boolean)
-    ], SpinnerComponent.prototype, "loading", void 0);
+        __metadata('design:type', Object)
+    ], SpinnerComponent.prototype, "loadCheck", void 0);
     SpinnerComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
