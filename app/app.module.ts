@@ -25,6 +25,9 @@ import { CapitalizerPipe } from './contacts/shared/pipes/capitalizer.pipe';
 import { AlphabetizerPipe } from './contacts/shared/pipes/alphabetizer.pipe';
 import { NameFilterPipe } from './contacts/shared/pipes/name-filter.pipe';
 
+import { ConfirmDeactivateGuard } from './contacts/shared/guards/can-deactivate-detail.guard';
+
+
 @NgModule({
 	imports: [ 
 		BrowserModule,
@@ -34,7 +37,7 @@ import { NameFilterPipe } from './contacts/shared/pipes/name-filter.pipe';
 		InMemoryWebApiModule.forRoot(InMemoryDataService),
 		AppRoutingModule
 	],
-	providers: [ ContactService ],
+	providers: [ ContactService, ConfirmDeactivateGuard ],
 	declarations: [ 
 		AppComponent,
 		ContactsComponent,

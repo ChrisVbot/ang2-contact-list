@@ -31,6 +31,11 @@ export class SpinnerComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
-    this.loading = false;
+    if (!this.loadCheck) {
+      this.loading = true;
+    }
+    else {
+      this.loading = false;
+    }
   }
 }

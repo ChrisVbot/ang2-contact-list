@@ -16,7 +16,12 @@ var SpinnerComponent = (function () {
         this.loading = true;
     };
     SpinnerComponent.prototype.ngOnChanges = function () {
-        this.loading = false;
+        if (!this.loadCheck) {
+            this.loading = true;
+        }
+        else {
+            this.loading = false;
+        }
     };
     __decorate([
         core_1.Input(), 

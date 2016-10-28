@@ -13,6 +13,7 @@ var router_1 = require('@angular/router');
 var common_1 = require('@angular/common');
 var forms_1 = require('@angular/forms');
 var contact_service_1 = require('../shared/services/contact.service');
+// import { ConfirmDeactivateGuard } from '../shared/guards/can-deactivate-detail.guard';
 var ContactDetailComponent = (function () {
     function ContactDetailComponent(contactService, route, location, formBuilder) {
         this.contactService = contactService;
@@ -41,6 +42,14 @@ var ContactDetailComponent = (function () {
             age: [this.contact.age, [forms_1.Validators.required]],
             phone: [this.contact.phone, [forms_1.Validators.required]]
         });
+        this.origDetails = this.contactDetails.value;
+    };
+    ContactDetailComponent.prototype.hasChanges = function () {
+        if ((!this.contact) || JSON.stringify(this.contact) === JSON.stringify(this.contactDetails.value))
+            return false;
+        else {
+            return true;
+        }
     };
     ContactDetailComponent.prototype.back = function () {
         this.location.back();
@@ -48,7 +57,10 @@ var ContactDetailComponent = (function () {
     ContactDetailComponent.prototype.update = function (contact) {
         var _this = this;
         this.contactService.update(contact)
-            .subscribe(function () { return _this.back(); });
+            .subscribe(function (data) {
+            _this.contact = data;
+            _this.back();
+        });
     };
     ContactDetailComponent.prototype.delete = function (contact) {
         var _this = this;

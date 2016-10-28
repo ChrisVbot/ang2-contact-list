@@ -13,8 +13,13 @@ var router_1 = require('@angular/router');
 var contact_detail_component_1 = require('./contacts/contact-detail/contact-detail.component');
 var home_component_1 = require('./contacts/home/home.component');
 var contacts_component_1 = require('./contacts/contacts.component');
+var can_deactivate_detail_guard_1 = require('./contacts/shared/guards/can-deactivate-detail.guard');
 var routes = [
-    { path: 'contacts/:id', component: contact_detail_component_1.ContactDetailComponent },
+    {
+        path: 'contacts/:id',
+        component: contact_detail_component_1.ContactDetailComponent,
+        canDeactivate: [can_deactivate_detail_guard_1.ConfirmDeactivateGuard]
+    },
     { path: 'home', component: home_component_1.HomeComponent },
     { path: 'contacts', component: contacts_component_1.ContactsComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' }

@@ -28,6 +28,7 @@ var hover_directive_1 = require('./contacts/shared/directives/hover.directive');
 var capitalizer_pipe_1 = require('./contacts/shared/pipes/capitalizer.pipe');
 var alphabetizer_pipe_1 = require('./contacts/shared/pipes/alphabetizer.pipe');
 var name_filter_pipe_1 = require('./contacts/shared/pipes/name-filter.pipe');
+var can_deactivate_detail_guard_1 = require('./contacts/shared/guards/can-deactivate-detail.guard');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -41,7 +42,7 @@ var AppModule = (function () {
                 in_memory_web_api_module_1.InMemoryWebApiModule.forRoot(in_memory_data_service_1.InMemoryDataService),
                 app_routing_module_1.AppRoutingModule
             ],
-            providers: [contact_service_1.ContactService],
+            providers: [contact_service_1.ContactService, can_deactivate_detail_guard_1.ConfirmDeactivateGuard],
             declarations: [
                 app_component_1.AppComponent,
                 contacts_component_1.ContactsComponent,

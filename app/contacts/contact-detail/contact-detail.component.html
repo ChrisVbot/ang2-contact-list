@@ -27,7 +27,7 @@
           </div>
       </div>
 
-      <button [disabled]="contactDetails.invalid" class="btn-large waves-effect waves-light red" type="button" (click)="update(contactDetails.value)">Update</button>
+      <button [disabled]="contactDetails.invalid || contactDetails.pristine" class="btn-large waves-effect waves-light red" type="button" (click)="update(contactDetails.value)">Update</button>
       <button class="btn-large waves-effect waves-light red" type="button" (click)="delete(contactDetails.value)" >Delete</button>
       <button class="btn-large waves-effect waves-light red" type="button" (click)="back()">Go back</button>
     </form>

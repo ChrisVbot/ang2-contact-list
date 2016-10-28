@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Contact } from '../shared/contact-model';
 import { ContactService } from '../shared/services/contact.service';
 
-
+// import { ConfirmDeactivateGuard } from '../shared/guards/can-deactivate-detail.guard';
 
 @Component({
   moduleId: module.id,
@@ -35,6 +35,7 @@ export class ContactDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private formBuilder: FormBuilder
+    // private guard: ConfirmDeactivateGuard
   ) {}
 
   ngOnInit(): void {
@@ -59,6 +60,13 @@ export class ContactDetailComponent implements OnInit {
       age: [this.contact.age, [Validators.required]],
       phone: [this.contact.phone, [Validators.required]]
     })
+    this.origDetails = this.contactDetails.value;
+  }
+
+  hasChanges(): boolean {
+    if ((!this.contact) || JSON.stringify(this.contact) === JSON.stringify(this.contactDetails.value))
+      return false;
+    else {return true;}
   }
 
   back() {
@@ -67,7 +75,10 @@ export class ContactDetailComponent implements OnInit {
 
   update(contact: Contact){
     this.contactService.update(contact)
-      .subscribe(()=> this.back())
+      .subscribe((data)=> {
+        this.contact = data;
+        this.back();
+      })
   }
 
   delete(contact: Contact){
