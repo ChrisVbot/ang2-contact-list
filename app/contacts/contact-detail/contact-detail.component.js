@@ -10,14 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var common_1 = require('@angular/common');
 var forms_1 = require('@angular/forms');
 var contact_service_1 = require('../shared/services/contact.service');
 var ContactDetailComponent = (function () {
-    function ContactDetailComponent(contactService, route, location, formBuilder) {
+    function ContactDetailComponent(contactService, route, router, formBuilder) {
         this.contactService = contactService;
         this.route = route;
-        this.location = location;
+        this.router = router;
         this.formBuilder = formBuilder;
     }
     ContactDetailComponent.prototype.ngOnInit = function () {
@@ -47,21 +46,24 @@ var ContactDetailComponent = (function () {
     //     return false;
     //   else {return true;}
     // }
-    ContactDetailComponent.prototype.back = function () {
-        this.location.back();
+    ContactDetailComponent.prototype.goToContacts = function () {
+        this.router.navigate(['/contacts']);
     };
     ContactDetailComponent.prototype.update = function (contact) {
         var _this = this;
         this.contactService.update(contact)
             .subscribe(function (data) {
             _this.contact = data;
-            _this.back();
+            _this.goToContacts();
         });
     };
     ContactDetailComponent.prototype.delete = function (contact) {
         var _this = this;
         this.contactService.deleteContact(contact)
-            .subscribe(function () { return _this.back(); });
+            .subscribe(function () {
+            _this.contact = null;
+            _this.goToContacts();
+        });
     };
     ContactDetailComponent.prototype.canDeactivate = function () {
         // Allow synchronous navigation (`true`) if no contact or the contact info is unchanged
@@ -77,7 +79,7 @@ var ContactDetailComponent = (function () {
             templateUrl: 'contact-detail.component.html',
             styles: ["\n    .required-field {\n      background: #ffcdd2;\n      color: #632827;\n      padding: 15px;\n      margin: -20px auto 20px auto;\n      border-radius: 4px;\n      width: 100%;\n    }\n  "]
         }), 
-        __metadata('design:paramtypes', [contact_service_1.ContactService, router_1.ActivatedRoute, common_1.Location, forms_1.FormBuilder])
+        __metadata('design:paramtypes', [contact_service_1.ContactService, router_1.ActivatedRoute, router_1.Router, forms_1.FormBuilder])
     ], ContactDetailComponent);
     return ContactDetailComponent;
 }());

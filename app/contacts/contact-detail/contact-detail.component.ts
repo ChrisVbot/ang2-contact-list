@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute, Params } from '@angular/router';
-import { Location } from '@angular/common';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -31,7 +30,7 @@ export class ContactDetailComponent implements OnInit {
   constructor(
     private contactService: ContactService,
     private route: ActivatedRoute,
-    private location: Location,
+    private router: Router,
     private formBuilder: FormBuilder
   ) {}
 
@@ -65,21 +64,24 @@ export class ContactDetailComponent implements OnInit {
   //   else {return true;}
   // }
 
-  back() {
-    this.location.back();
+  goToContacts() {
+    this.router.navigate(['/contacts']);
   }
 
   update(contact: Contact){
     this.contactService.update(contact)
       .subscribe((data)=> {
         this.contact = data;
-        this.back();
+        this.goToContacts();
       })
   }
 
   delete(contact: Contact){
     this.contactService.deleteContact(contact)
-      .subscribe(()=> this.back())
+      .subscribe(()=> {
+        this.contact = null;
+        this.goToContacts();
+      })
   }
 
    canDeactivate(): Promise<boolean> | boolean {
