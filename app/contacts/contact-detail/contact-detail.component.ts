@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Contact } from '../shared/contact-model';
 import { ContactService } from '../shared/services/contact.service';
 
-import * as _ from 'node_modules/lodash/lodash.js';
+import * as _ from 'lodash';
 
 @Component({
   moduleId: module.id,

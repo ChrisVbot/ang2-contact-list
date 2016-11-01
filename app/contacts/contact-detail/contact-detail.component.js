@@ -12,7 +12,7 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var forms_1 = require('@angular/forms');
 var contact_service_1 = require('../shared/services/contact.service');
-var _ = require('node_modules/lodash/lodash.js');
+var _ = require('lodash');
 var ContactDetailComponent = (function () {
     function ContactDetailComponent(contactService, route, router, formBuilder) {
         this.contactService = contactService;
