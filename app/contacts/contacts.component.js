@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var contact_service_1 = require('./shared/services/contact.service');
+var new_contact_component_1 = require('./new-contact/new-contact.component');
 var ContactsComponent = (function () {
     function ContactsComponent(contactService, router) {
         this.contactService = contactService;
@@ -28,6 +29,18 @@ var ContactsComponent = (function () {
         var link = ['/contacts', contact.id];
         this.router.navigate(link);
     };
+    ContactsComponent.prototype.canDeactivate = function () {
+        if (this.newContactComponent.canDeactivate()) {
+            return true;
+        }
+        else {
+            return window.confirm('Are you sure? Your unsaved changes will be lost');
+        }
+    };
+    __decorate([
+        core_1.ViewChild(new_contact_component_1.NewContactComponent), 
+        __metadata('design:type', new_contact_component_1.NewContactComponent)
+    ], ContactsComponent.prototype, "newContactComponent", void 0);
     ContactsComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

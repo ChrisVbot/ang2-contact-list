@@ -21,7 +21,10 @@ var routes = [
         canDeactivate: [can_deactivate_detail_guard_1.ConfirmDeactivateGuard]
     },
     { path: 'home', component: home_component_1.HomeComponent },
-    { path: 'contacts', component: contacts_component_1.ContactsComponent },
+    {
+        path: 'contacts',
+        component: contacts_component_1.ContactsComponent,
+        canDeactivate: [can_deactivate_detail_guard_1.ConfirmDeactivateGuard] },
     { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 var AppRoutingModule = (function () {

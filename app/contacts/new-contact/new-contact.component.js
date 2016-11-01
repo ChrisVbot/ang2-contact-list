@@ -21,6 +21,9 @@ var NewContactComponent = (function () {
     NewContactComponent.prototype.ngOnInit = function () {
         this.confirmation = true;
         this.errorMessage = null;
+        this.buildForm();
+    };
+    NewContactComponent.prototype.buildForm = function () {
         this.newContactForm = this.formBuilder.group({
             name: ['', [forms_1.Validators.required]],
             age: ['', [forms_1.Validators.required]],
@@ -50,6 +53,12 @@ var NewContactComponent = (function () {
             _this.contacts.push(contact);
             _this.resetForm();
         }, function (error) { return _this.errorMessage = 'Something went wrong' + error; });
+    };
+    NewContactComponent.prototype.canDeactivate = function () {
+        if (!this.newContactForm) {
+            return true;
+        }
+        return this.newContactForm.pristine;
     };
     __decorate([
         core_1.Input(), 

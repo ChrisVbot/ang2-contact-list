@@ -1,7 +1,7 @@
 .new-confirmation {
   margin-bottom: 50px;
 }
-.ng-valid[required], .ng-valid.required {
+.ng-valid:not(form) {
   background: #e8f5e9;
 }
 .ng-invalid:not(form).ng-touched {

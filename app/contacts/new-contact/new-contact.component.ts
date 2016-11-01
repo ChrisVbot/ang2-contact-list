@@ -52,12 +52,15 @@ export class NewContactComponent implements OnInit {
   ngOnInit(): void {
     this.confirmation = true;
     this.errorMessage = null;
-    this.newContactForm = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      age: ['', [Validators.required]],
-      phone: ['', [Validators.required]]
-    }); 
+    this.buildForm();
+  }
 
+  buildForm(): void {
+    this.newContactForm = this.formBuilder.group({
+    name: ['', [Validators.required]],
+    age: ['', [Validators.required]],
+    phone: ['', [Validators.required]]
+    }); 
   }
 
   growButton(): void {
@@ -88,7 +91,11 @@ export class NewContactComponent implements OnInit {
         },
         error => this.errorMessage = 'Something went wrong' + error 
       )
+  }
 
+  canDeactivate(): boolean {
+    if (!this.newContactForm){return true;}
+    return this.newContactForm.pristine;
   }
 
 

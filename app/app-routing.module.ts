@@ -13,7 +13,10 @@ const routes: Routes = [
     canDeactivate: [ConfirmDeactivateGuard]
      },
   { path: 'home', component: HomeComponent },
-  { path: 'contacts', component: ContactsComponent },
+  { 
+    path: 'contacts', 
+    component: ContactsComponent,
+    canDeactivate: [ConfirmDeactivateGuard] },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ]
 
