@@ -7,6 +7,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Contact } from '../shared/contact-model';
 import { ContactService } from '../shared/services/contact.service';
 
+import * as _ from 'node_modules/lodash/lodash.js';
+
 @Component({
   moduleId: module.id,
   selector: 'contact-detail',
@@ -58,12 +60,6 @@ export class ContactDetailComponent implements OnInit {
     })
   }
 
-  // hasChanges(): boolean {
-  //   if ((!this.contact) || JSON.stringify(this.contact) === JSON.stringify(this.contactDetails.value))
-  //     return false;
-  //   else {return true;}
-  // }
-
   goToContacts() {
     this.router.navigate(['/contacts']);
   }
@@ -86,7 +82,7 @@ export class ContactDetailComponent implements OnInit {
 
    canDeactivate(): Promise<boolean> | boolean {
     // Allow synchronous navigation (`true`) if no contact or the contact info is unchanged
-    if ((!this.contact) || JSON.stringify(this.contact) === JSON.stringify(this.contactDetails.value)) {
+    if ((!this.contact) || _.isEqual(this.contact, this.contactDetails.value)) {
       return true;
     }
     return window.confirm('Do you want to go back? Your unsaved changes will be lost');

@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var forms_1 = require('@angular/forms');
 var contact_service_1 = require('../shared/services/contact.service');
+var _ = require('node_modules/lodash/lodash.js');
 var ContactDetailComponent = (function () {
     function ContactDetailComponent(contactService, route, router, formBuilder) {
         this.contactService = contactService;
@@ -41,11 +42,6 @@ var ContactDetailComponent = (function () {
             phone: [this.contact.phone, [forms_1.Validators.required]]
         });
     };
-    // hasChanges(): boolean {
-    //   if ((!this.contact) || JSON.stringify(this.contact) === JSON.stringify(this.contactDetails.value))
-    //     return false;
-    //   else {return true;}
-    // }
     ContactDetailComponent.prototype.goToContacts = function () {
         this.router.navigate(['/contacts']);
     };
@@ -67,7 +63,7 @@ var ContactDetailComponent = (function () {
     };
     ContactDetailComponent.prototype.canDeactivate = function () {
         // Allow synchronous navigation (`true`) if no contact or the contact info is unchanged
-        if ((!this.contact) || JSON.stringify(this.contact) === JSON.stringify(this.contactDetails.value)) {
+        if ((!this.contact) || _.isEqual(this.contact, this.contactDetails.value)) {
             return true;
         }
         return window.confirm('Do you want to go back? Your unsaved changes will be lost');
