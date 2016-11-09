@@ -17,6 +17,7 @@ var new_contact_component_1 = require('./new-contact/new-contact.component');
 var contact_detail_component_1 = require('./contact-detail/contact-detail.component');
 var home_component_1 = require('./home/home.component');
 var contact_search_component_1 = require('./contact-search/contact-search.component');
+var page_not_found_component_1 = require('./page-not-found/page-not-found.component');
 var loading_component_1 = require('./loading-component/loading.component');
 //Providers
 var contact_service_1 = require('./shared/services/contact.service');
@@ -47,7 +48,8 @@ var ContactsModule = (function () {
                 capitalizer_pipe_1.CapitalizerPipe,
                 alphabetizer_pipe_1.AlphabetizerPipe,
                 name_filter_pipe_1.NameFilterPipe,
-                loading_component_1.SpinnerComponent
+                loading_component_1.SpinnerComponent,
+                page_not_found_component_1.PageNotFoundComponent
             ]
         }), 
         __metadata('design:paramtypes', [])

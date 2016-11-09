@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ContactDetailComponent } from './contacts/contact-detail/contact-detail.component';
 import { HomeComponent } from './contacts/home/home.component';
 import { ContactsComponent } from './contacts/contacts.component';
+import { PageNotFoundComponent } from './contacts/page-not-found/page-not-found.component';
 import { ConfirmDeactivateGuard } from './contacts/shared/guards/can-deactivate-detail.guard';
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
     path: 'contacts', 
     component: ContactsComponent,
     canDeactivate: [ConfirmDeactivateGuard] },
-  { path: '', redirectTo: '/home', pathMatch: 'full' }
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', component: PageNotFoundComponent }
 ]
 
 @NgModule({

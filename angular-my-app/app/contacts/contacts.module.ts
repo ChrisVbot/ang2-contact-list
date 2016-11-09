@@ -7,6 +7,7 @@ import { NewContactComponent } from './new-contact/new-contact.component';
 import { ContactDetailComponent } from './contact-detail/contact-detail.component';
 import { HomeComponent } from './home/home.component';
 import { ContactSearchComponent } from './contact-search/contact-search.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SpinnerComponent } from './loading-component/loading.component';
 //Providers
 import { ContactService } from './shared/services/contact.service';
@@ -34,7 +35,8 @@ import { NameFilterPipe } from './shared/pipes/name-filter.pipe';
     CapitalizerPipe,
     AlphabetizerPipe,
     NameFilterPipe,
-    SpinnerComponent
+    SpinnerComponent,
+    PageNotFoundComponent
   ]
 })
 

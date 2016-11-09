@@ -13,6 +13,7 @@ var router_1 = require('@angular/router');
 var contact_detail_component_1 = require('./contacts/contact-detail/contact-detail.component');
 var home_component_1 = require('./contacts/home/home.component');
 var contacts_component_1 = require('./contacts/contacts.component');
+var page_not_found_component_1 = require('./contacts/page-not-found/page-not-found.component');
 var can_deactivate_detail_guard_1 = require('./contacts/shared/guards/can-deactivate-detail.guard');
 var routes = [
     {
@@ -25,7 +26,8 @@ var routes = [
         path: 'contacts',
         component: contacts_component_1.ContactsComponent,
         canDeactivate: [can_deactivate_detail_guard_1.ConfirmDeactivateGuard] },
-    { path: '', redirectTo: '/home', pathMatch: 'full' }
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: '**', component: page_not_found_component_1.PageNotFoundComponent }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
