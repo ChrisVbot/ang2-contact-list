@@ -46,7 +46,7 @@ export class ContactsComponent implements OnInit {
       return window.confirm('Are you sure? Your unsaved changes will be lost');
     }
   }
-
+  
 }
 
 
