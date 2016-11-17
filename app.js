@@ -1,15 +1,15 @@
-var express = require('express');
-var app = express();
-var path = require("path");
-var bodyParser = require('body-parser');
-var PORT = process.env.port || 8080;
+const express = require('express');
+const app = express();
+const path = require("path");
+const bodyParser = require('body-parser');
+const PORT = process.env.port || 8080;
 
 //connect to Massive and get db instance
-var massive = require("massive")
-var connectionString = "postgres://development:development@localhost/ang2contacts"
-var massiveInstance = massive.connectSync({connectionString: connectionString})
+const massive = require("massive")
+const connectionString = "postgres://development:development@localhost/ang2contacts"
+const massiveInstance = massive.connectSync({connectionString: connectionString})
 app.set('db', massiveInstance)
-var db = app.get('db')
+const db = app.get('db')
 
 app.use(express.static(path.join(__dirname, 'angular-my-app')));
 app.use(bodyParser.json())
@@ -33,6 +33,13 @@ app.post("/api/contacts", (req, res) => {
   console.log(req.body)
   db.contacts.insert({name: req.body.name, age: req.body.age, phone: req.body.phone}, function(err, contact){
     console.log(contact);
+    res.send(contact);
+  });
+});
+
+app.delete("/api/contacts/:id", (req, res) => {
+  console.log(req.params.id)
+  db.contacts.destroy({id: req.params.id}, function(err, contact){
     res.send(contact);
   });
 });
