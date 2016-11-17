@@ -12,6 +12,7 @@ app.set('db', massiveInstance)
 var db = app.get('db')
 
 app.use(express.static(path.join(__dirname, 'angular-my-app')));
+app.use(bodyParser.json())
 
 app.get("/api/contacts", (req, res) => {
   db.run("select * from contacts", function(err, contacts){
@@ -24,9 +25,15 @@ app.get("/api/contacts", (req, res) => {
       contact.phone = c.phone
       contactList.push(contact)
     });
-
-    console.log(contactList)
     res.send(contactList)
+  });
+});
+
+app.post("/api/contacts", (req, res) => {
+  console.log(req.body)
+  db.contacts.insert({name: req.body.name, age: req.body.age, phone: req.body.phone}, function(err, contact){
+    console.log(contact);
+    res.send(contact);
   });
 });
 
