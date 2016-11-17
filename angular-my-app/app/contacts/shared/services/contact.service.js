@@ -30,8 +30,12 @@ var ContactService = (function () {
     };
     ContactService.prototype.getNewest = function () {
         return this.getContacts()
-            .map(function (contacts) { return contacts[contacts.length - 1]; });
+            .map(function (contacts) {
+            var id = Math.max.apply(Math, contacts.map(function (contact) { return contact.id; }));
+            return contacts.find(function (contact) { return contact.id === id; });
+        });
     };
+    ;
     ContactService.prototype.getData = function (res) {
         var body = res.json();
         return body || {};

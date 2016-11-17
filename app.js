@@ -30,7 +30,6 @@ app.get("/api/contacts", (req, res) => {
 });
 
 app.post("/api/contacts", (req, res) => {
-  console.log(req.body)
   db.contacts.insert({name: req.body.name, age: req.body.age, phone: req.body.phone}, function(err, contact){
     console.log(contact);
     res.send(contact);
@@ -38,8 +37,13 @@ app.post("/api/contacts", (req, res) => {
 });
 
 app.delete("/api/contacts/:id", (req, res) => {
-  console.log(req.params.id)
   db.contacts.destroy({id: req.params.id}, function(err, contact){
+    res.send(contact);
+  });
+});
+
+app.put("/api/contacts/:id", (req, res) => {
+  db.contacts.update({id: req.params.id, name: req.body.name, age: req.body.age, phone: req.body.phone}, function(err, contact){
     res.send(contact);
   });
 });

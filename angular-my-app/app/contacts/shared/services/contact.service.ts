@@ -28,8 +28,11 @@ export class ContactService{
 
   getNewest(): Observable<Contact>{
     return this.getContacts()
-      .map(contacts => contacts[contacts.length-1])
-  }
+      .map(contacts => {
+        let id = Math.max(...contacts.map(function(contact){return contact.id}));
+        return contacts.find(contact => contact.id === id);
+      });
+  };
 
   getData(res: Response) {
     let body = res.json()
