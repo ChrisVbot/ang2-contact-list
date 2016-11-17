@@ -14,12 +14,12 @@ var Observable_1 = require('rxjs/Observable');
 var ContactService = (function () {
     function ContactService(http) {
         this.http = http;
-        this.contactsUrl = 'app/contactslist';
+        this.contactsUrl = '/api/contacts';
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         this.options = new http_1.RequestOptions({ headers: this.headers });
     }
     ContactService.prototype.getContacts = function () {
-        return this.http.get('api/contacts')
+        return this.http.get(this.contactsUrl)
             .delay(100)
             .map(this.getData)
             .catch(this.handleError);
@@ -34,7 +34,7 @@ var ContactService = (function () {
     };
     ContactService.prototype.getData = function (res) {
         var body = res.json();
-        return body.data || {};
+        return body || {};
     };
     ContactService.prototype.handleError = function (error) {
         console.error('Something went wrong', error);

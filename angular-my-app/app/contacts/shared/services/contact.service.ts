@@ -9,14 +9,14 @@ import { Contact } from '../contact-model';
 
 export class ContactService{
 
-  private contactsUrl = 'app/contactslist';
+  private contactsUrl = '/api/contacts';
   private headers = new Headers({'Content-Type':'application/json'});
   private options = new RequestOptions({headers: this.headers});
 
   constructor(private http: Http){}
 
   getContacts(): Observable<Contact[]>{
-    return this.http.get('api/contacts')
+    return this.http.get(this.contactsUrl)
       .delay(100)
       .map(this.getData)
       .catch(this.handleError)
@@ -33,7 +33,7 @@ export class ContactService{
 
   getData(res: Response) {
     let body = res.json()
-    return body.data || {}
+    return body || {}
   }
 
   handleError(error: any){

@@ -3,7 +3,6 @@ var app = express();
 var path = require("path");
 var bodyParser = require('body-parser');
 var PORT = process.env.port || 8080;
-var routes = require('./routes/index');
 
 //connect to Massive and get db instance
 var massive = require("massive")
@@ -14,15 +13,26 @@ var db = app.get('db')
 
 app.use(express.static(path.join(__dirname, 'angular-my-app')));
 
-app.use('/', routes)
+app.get("/api/contacts", (req, res) => {
+  db.run("select * from contacts", function(err, contacts){
+    var contactList = []
+    contacts.forEach(function (c) {
+      var contact = {}
+      contact.id = c.id
+      contact.name = c.name
+      contact.age = c.age
+      contact.phone = c.phone
+      contactList.push(contact)
+    });
 
+    console.log(contactList)
+    res.send(contactList)
+  });
+});
 
-// app.get("*", (req, res) => {
-//   // db.run("select * from contacts", function(err, contact){
-//   //   console.log(contact[0])
-//   // })
-//   res.sendFile(path.join(__dirname + '/angular-my-app/index.html'));
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + '/angular-my-app/index.html'));
+});
 
 app.listen(PORT, () => {
   console.log(`Listening on ${PORT}!`);

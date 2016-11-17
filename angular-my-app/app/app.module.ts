@@ -12,12 +12,12 @@ import { AppComponent } from './app.component';
 
 import { ConfirmDeactivateGuard } from './contacts/shared/guards/can-deactivate-detail.guard';
 
-
+//TODO: remove reference to InMemoryWebApi
 @NgModule({
 	imports: [ 
 		BrowserModule,
 		HttpModule,
-		InMemoryWebApiModule.forRoot(InMemoryDataService),
+		InMemoryWebApiModule.forRoot(InMemoryDataService, {passThruUnknownUrl: true}),
 		AppRoutingModule,
 		ContactsModule
 	],

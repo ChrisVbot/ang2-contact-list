@@ -17,6 +17,7 @@ var app_routing_module_1 = require('./app-routing.module');
 var contacts_module_1 = require('./contacts/contacts.module');
 var app_component_1 = require('./app.component');
 var can_deactivate_detail_guard_1 = require('./contacts/shared/guards/can-deactivate-detail.guard');
+//TODO: remove reference to InMemoryWebApi
 var AppModule = (function () {
     function AppModule() {
     }
@@ -25,7 +26,7 @@ var AppModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 http_1.HttpModule,
-                angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(in_memory_data_service_1.InMemoryDataService),
+                angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(in_memory_data_service_1.InMemoryDataService, { passThruUnknownUrl: true }),
                 app_routing_module_1.AppRoutingModule,
                 contacts_module_1.ContactsModule
             ],
