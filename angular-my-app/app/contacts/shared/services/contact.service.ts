@@ -16,7 +16,7 @@ export class ContactService{
   constructor(private http: Http){}
 
   getContacts(): Observable<Contact[]>{
-    return this.http.get(this.contactsUrl)
+    return this.http.get('api/contacts')
       .delay(100)
       .map(this.getData)
       .catch(this.handleError)

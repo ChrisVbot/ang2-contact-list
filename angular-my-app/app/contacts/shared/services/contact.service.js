@@ -19,7 +19,7 @@ var ContactService = (function () {
         this.options = new http_1.RequestOptions({ headers: this.headers });
     }
     ContactService.prototype.getContacts = function () {
-        return this.http.get(this.contactsUrl)
+        return this.http.get('api/contacts')
             .delay(100)
             .map(this.getData)
             .catch(this.handleError);
