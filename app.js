@@ -16,23 +16,23 @@ app.use(bodyParser.json())
 
 app.get("/api/contacts", (req, res) => {
   db.run("select * from contacts", function(err, contacts){
-    var contactList = []
-    contacts.forEach(function (c) {
-      var contact = {}
-      contact.id = c.id
-      contact.name = c.name
-      contact.age = c.age
-      contact.phone = c.phone
-      contactList.push(contact)
-    });
+    let contactList = mapContacts(contacts);
     res.send(contactList)
-  });
+    });
 });
 
 app.post("/api/contacts", (req, res) => {
   db.contacts.insert({name: req.body.name, age: req.body.age, phone: req.body.phone}, function(err, contact){
     console.log(contact);
     res.send(contact);
+  });
+});
+
+app.get("/api/search", (req, res) => {
+  let query = req.query.name
+  db.run("select * from contacts WHERE name ilike $1", ["%"+query+"%"], function(err, contacts){
+    let results = mapContacts(contacts)
+    res.send(results);
   });
 });
 
@@ -55,5 +55,16 @@ app.get("*", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Listening on ${PORT}!`);
 });
+
+function mapContacts(contacts) {
+  return contacts.map(function (c) {
+    let contact = {}
+    contact.id = c.id
+    contact.name = c.name
+    contact.age = c.age
+    contact.phone = c.phone
+    return contact;
+  });
+};
 
 module.exports = app;
