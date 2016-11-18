@@ -20,6 +20,7 @@ var ContactService = (function () {
     }
     ContactService.prototype.getContacts = function () {
         return this.http.get(this.contactsUrl)
+            .delay(1000)
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };

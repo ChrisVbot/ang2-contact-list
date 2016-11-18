@@ -17,6 +17,8 @@ export class ContactService{
 
   getContacts(): Observable<Contact[]>{
     return this.http.get(this.contactsUrl)
+      //artifical delay to simulate slow db - component will show loading animation
+      .delay(1000)
       .map(response => response.json())
       .catch(this.handleError)
   }
