@@ -21,7 +21,7 @@ var ContactService = (function () {
     ContactService.prototype.getContacts = function () {
         return this.http.get(this.contactsUrl)
             .delay(100)
-            .map(this.getData)
+            .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     ContactService.prototype.getContactDetails = function (id) {
@@ -36,10 +36,6 @@ var ContactService = (function () {
         });
     };
     ;
-    ContactService.prototype.getData = function (res) {
-        var body = res.json();
-        return body || {};
-    };
     ContactService.prototype.handleError = function (error) {
         console.error('Something went wrong', error);
         return Observable_1.Observable.throw(error);
@@ -47,7 +43,7 @@ var ContactService = (function () {
     ContactService.prototype.addContact = function (contact) {
         var body = JSON.stringify(contact);
         return this.http.post(this.contactsUrl, body, this.options)
-            .map(this.getData)
+            .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     ContactService.prototype.update = function (contact) {
