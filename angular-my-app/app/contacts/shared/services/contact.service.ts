@@ -17,7 +17,6 @@ export class ContactService{
 
   getContacts(): Observable<Contact[]>{
     return this.http.get(this.contactsUrl)
-      .delay(100)
       .map(response => response.json())
       .catch(this.handleError)
   }
