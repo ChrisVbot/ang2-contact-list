@@ -20,7 +20,7 @@ app.get("/api/contacts", (req, res) => {
     res.send(contactList)
     });
 });
-
+//TODO: add validation 
 app.post("/api/contacts", (req, res) => {
   db.contacts.insert({name: req.body.name, age: req.body.age, phone: req.body.phone}, function(err, contact){
     console.log(contact);
@@ -38,7 +38,7 @@ app.get("/api/search", (req, res) => {
 
 app.delete("/api/contacts/:id", (req, res) => {
   db.contacts.destroy({id: req.params.id}, function(err, contact){
-    res.send(contact);
+    res.sendStatus(200);
   });
 });
 
