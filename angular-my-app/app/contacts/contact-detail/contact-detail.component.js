@@ -53,12 +53,15 @@ var ContactDetailComponent = (function () {
             _this.goToContacts();
         });
     };
+    //TODO: implement navguard for deletions
     ContactDetailComponent.prototype.delete = function (contact) {
         var _this = this;
         this.contactService.deleteContact(contact)
             .subscribe(function () {
-            _this.contact = null;
-            _this.goToContacts();
+            if (window.confirm("Are you sure?")) {
+                _this.contact = null;
+                _this.goToContacts();
+            }
         });
     };
     ContactDetailComponent.prototype.canDeactivate = function () {

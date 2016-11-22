@@ -14,14 +14,14 @@ var Observable_1 = require('rxjs/Observable');
 var ContactService = (function () {
     function ContactService(http) {
         this.http = http;
-        this.contactsUrl = 'app/contactslist';
+        this.contactsUrl = '/api/contacts';
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         this.options = new http_1.RequestOptions({ headers: this.headers });
     }
     ContactService.prototype.getContacts = function () {
         return this.http.get(this.contactsUrl)
-            .delay(100)
-            .map(this.getData)
+            .delay(1000)
+            .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     ContactService.prototype.getContactDetails = function (id) {
@@ -30,12 +30,12 @@ var ContactService = (function () {
     };
     ContactService.prototype.getNewest = function () {
         return this.getContacts()
-            .map(function (contacts) { return contacts[contacts.length - 1]; });
+            .map(function (contacts) {
+            var id = Math.max.apply(Math, contacts.map(function (contact) { return contact.id; }));
+            return contacts.find(function (contact) { return contact.id === id; });
+        });
     };
-    ContactService.prototype.getData = function (res) {
-        var body = res.json();
-        return body.data || {};
-    };
+    ;
     ContactService.prototype.handleError = function (error) {
         console.error('Something went wrong', error);
         return Observable_1.Observable.throw(error);
@@ -43,7 +43,7 @@ var ContactService = (function () {
     ContactService.prototype.addContact = function (contact) {
         var body = JSON.stringify(contact);
         return this.http.post(this.contactsUrl, body, this.options)
-            .map(this.getData)
+            .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     ContactService.prototype.update = function (contact) {

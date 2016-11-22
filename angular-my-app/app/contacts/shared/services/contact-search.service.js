@@ -15,8 +15,8 @@ var ContactSearchService = (function () {
         this.http = http;
     }
     ContactSearchService.prototype.search = function (term) {
-        return this.http.get("app/contactslist/?name=" + term)
-            .map(function (response) { return response.json().data; });
+        return this.http.get("/api/search/?name=" + term)
+            .map(function (response) { return response.json(); });
     };
     ContactSearchService = __decorate([
         core_1.Injectable(), 

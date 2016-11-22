@@ -72,11 +72,14 @@ export class ContactDetailComponent implements OnInit {
       })
   }
 
+  //TODO: implement navguard for deletions
   delete(contact: Contact){
     this.contactService.deleteContact(contact)
       .subscribe(()=> {
-        this.contact = null;
-        this.goToContacts();
+        if (window.confirm("Are you sure?")){
+          this.contact = null;
+          this.goToContacts();
+        }
       })
   }
 
