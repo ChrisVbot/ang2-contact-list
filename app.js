@@ -63,6 +63,7 @@ function mapContacts(contacts) {
     contact.name = c.name
     contact.age = c.age
     contact.phone = c.phone
+    console.log('aaa');
     return contact;
   });
 };
